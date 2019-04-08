@@ -15,9 +15,9 @@ class App extends Component {
       <div className="App">
         <h1>Hi, I'm a React App</h1>
         <p>This is really working</p>
-        <Person />
-        <Person />
-        <Person />
+        <Person name="Max" age="28" />
+        <Person name="Manu" age="26">My Hobbie: Racing</Person>
+        <Person name="Stephanie" age="29"/>
       </div>
       //Cannot return another <h1>. We can only have one root element (div)
     );
