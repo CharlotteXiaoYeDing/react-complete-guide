@@ -1,7 +1,7 @@
 //React is always required for rendering 
 import React, { Component } from 'react';
 import './App.css';
-//Must start with uppercase letter
+//Must start with uppercase letter 
 import Person from './Person/Person'
 
 //Defining component: 
