@@ -30,6 +30,15 @@ class App extends Component {
       {name: "Stephanie", age: 27}
     ]})
   }
+
+  //target is the input into which we typed
+  nameChangedHanlder = (event) => {
+    this.setState({persons: [
+      {name: "Max", age: 28 },
+      {name: event.target.value, age: 26 },
+      {name: "Stephanie", age: 26}
+    ]})
+  }
   render() {
     //Every component must return some HTML to the DOM
     return (
@@ -45,7 +54,8 @@ class App extends Component {
         <Person 
           name={this.state.persons[1].name} 
           age={this.state.persons[1].age}
-          click={ this.switchNameHandler.bind(this, "charly") }>My Hobbie: Racing</Person>
+          click={ this.switchNameHandler.bind(this, "charly")}
+          changed={this.nameChangedHanlder}>My Hobbie: Racing</Person>
         <Person 
           name={this.state.persons[2].name} 
           age={this.state.persons[2].age} />
