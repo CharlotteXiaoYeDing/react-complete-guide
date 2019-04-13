@@ -17,7 +17,8 @@ class App extends Component {
         {name: "Manu", age: 26 },
         {name: "Stephanie", age: 29}
       ],
-      otherState: 'some other value'
+      otherState: 'some other value',
+      showPersons: false
   }
 
   //use handler to indicate that it's a function not being called
@@ -39,6 +40,12 @@ class App extends Component {
       {name: "Stephanie", age: 26}
     ]})
   }
+
+  togglePersonsHandler = () => {
+      const doesShow = this.state.showPersons
+      this.setState({showPersons: !doesShow})
+  }
+
   render() {
     const style = {
       backgroundColor: 'white',
@@ -56,20 +63,25 @@ class App extends Component {
         <h1>Hi, I'm a React App</h1>
         <p>This is really working</p>
         <button 
-          onClick={ () => this.switchNameHandler("Maximilian") }
+          onClick={ () => this.togglePersonsHandler() }
           style={style}
         >Switch Name</button>
-        <Person 
-          name={this.state.persons[0].name} 
-          age={this.state.persons[0].age} />
-        <Person 
-          name={this.state.persons[1].name} 
-          age={this.state.persons[1].age}
-          click={ this.switchNameHandler.bind(this, "charly")}
-          changed={this.nameChangedHanlder}>My Hobbie: Racing</Person>
-        <Person 
-          name={this.state.persons[2].name} 
-          age={this.state.persons[2].age} />
+        {
+          this.state.showPersons === true ? 
+          <div>
+            <Person 
+              name={this.state.persons[0].name} 
+              age={this.state.persons[0].age} />
+            <Person 
+              name={this.state.persons[1].name} 
+              age={this.state.persons[1].age}
+              click={ this.switchNameHandler.bind(this, "charly")}
+              changed={this.nameChangedHanlder}>My Hobbie: Racing</Person>
+            <Person 
+              name={this.state.persons[2].name} 
+              age={this.state.persons[2].age} />
+          </div> : null
+        }
       </div>
       //Cannot return another <h1>. We can only have one root element (div)
     );
