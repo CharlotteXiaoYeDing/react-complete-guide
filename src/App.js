@@ -45,9 +45,9 @@ class App extends Component {
   //target is the input into which we typed
   nameChangedHanlder = (event) => {
     this.setState({persons: [
-      {name: "Max", age: 28 },
-      {name: event.target.value, age: 26 },
-      {name: "Stephanie", age: 26}
+      {id: '1', name: "Max", age: 28 },
+      {id: '2', name: event.target.value, age: 26 },
+      {id: '3', name: "Stephanie", age: 26}
     ]})
   }
 
@@ -71,7 +71,9 @@ class App extends Component {
         persons = (
           <div>
             {this.state.persons.map((person, index) => {
+              //key prop help react update lists effectively. It compare virtual DOM and real DOM to figure out the changes. By default, it render the entire lists. With key, it only re render the ones that changed.
               return (<Person 
+                key={person.id}
                 click={() => this.deletePersonHandler(index)}
                 name={person.name} 
                 age={person.age} />
