@@ -13,9 +13,9 @@ class App extends Component {
   //if state/props changed, will re render the DOM
   state = {
       persons: [
-        {name: "Max", age: 28 },
-        {name: "Manu", age: 26 },
-        {name: "Stephanie", age: 29}
+        {id: '1', name: "Max", age: 28 },
+        {id: '2', name: "Manu", age: 26 },
+        {id: '3', name: "Stephanie", age: 29}
       ],
       otherState: 'some other value',
       showPersons: false
@@ -43,12 +43,18 @@ class App extends Component {
   }
 
   //target is the input into which we typed
-  nameChangedHanlder = (event) => {
-    this.setState({persons: [
-      {id: '1', name: "Max", age: 28 },
-      {id: '2', name: event.target.value, age: 26 },
-      {id: '3', name: "Stephanie", age: 26}
-    ]})
+  nameChangedHanlder = (event, id) => {
+    const personIndex = this.state.persons.findIndex(p => {
+        return p.id = id;
+    })
+    const person = {
+      ...this.state.persons[personIndex]
+    }
+    // const person = Object.assign({}, this.state.person(personIndex))
+    person.name = event.target.value
+    const persons = [...this.state.persons]
+    persons[personIndex] = person
+    this.setState({persons: persons})
   }
 
   togglePersonsHandler = () => {
@@ -76,7 +82,8 @@ class App extends Component {
                 key={person.id}
                 click={() => this.deletePersonHandler(index)}
                 name={person.name} 
-                age={person.age} />
+                age={person.age} 
+                changed={(event) => this.nameChangedHanlder(event, person.id)}/>
               )
             })}
           </div> 
