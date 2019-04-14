@@ -55,19 +55,10 @@ class App extends Component {
       cursor: 'pointer'
     }
 
-    //Every component must return some HTML to the DOM
-    return (
-      //class is a reserved word. Use className instead.
-      //bind is prefer to anonymous function
-      <div className="App">
-        <h1>Hi, I'm a React App</h1>
-        <p>This is really working</p>
-        <button 
-          onClick={ () => this.togglePersonsHandler() }
-          style={style}
-        >Switch Name</button>
-        {
-          this.state.showPersons === true ? 
+    let persons = null;
+
+    if (this.state.showPersons) {
+        persons = (
           <div>
             <Person 
               name={this.state.persons[0].name} 
@@ -80,8 +71,22 @@ class App extends Component {
             <Person 
               name={this.state.persons[2].name} 
               age={this.state.persons[2].age} />
-          </div> : null
-        }
+          </div> 
+        );
+    }
+
+    //Every component must return some HTML to the DOM
+    return (
+      //class is a reserved word. Use className instead.
+      //bind is prefer to anonymous function
+      <div className="App">
+        <h1>Hi, I'm a React App</h1>
+        <p>This is really working</p>
+        <button 
+          onClick={ () => this.togglePersonsHandler() }
+          style={style}
+        >Switch Name</button>
+        {persons}
       </div>
       //Cannot return another <h1>. We can only have one root element (div)
     );
