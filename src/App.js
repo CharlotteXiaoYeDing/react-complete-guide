@@ -33,7 +33,10 @@ class App extends Component {
   // }
 
   deletePersonHandler = (personIndex) => {
-      const persons = this.state.persons;
+      //slice copy the old array and returna new one
+      // const persons = this.state.persons.slice();
+      //...is the spread operator
+      const persons = [...this.state.persons]
       //delete one element from array
       persons.splice(personIndex, 1)
       this.setState({persons: persons})
