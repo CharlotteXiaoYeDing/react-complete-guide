@@ -23,13 +23,20 @@ class App extends Component {
 
   //use handler to indicate that it's a function not being called
   //do not add parantheses when calling the function
-  switchNameHandler = (newName) => {
-    //Don't do this: this.state.person[0].name = 'Maxi'
-    this.setState({persons: [
-      {name: newName, age: 28 },
-      {name: "Manu", age: 26 },
-      {name: "Stephanie", age: 27}
-    ]})
+  // switchNameHandler = (newName) => {
+  //   //Don't do this: this.state.person[0].name = 'Maxi'
+  //   this.setState({persons: [
+  //     {name: newName, age: 28 },
+  //     {name: "Manu", age: 26 },
+  //     {name: "Stephanie", age: 27}
+  //   ]})
+  // }
+
+  deletePersonHandler = (personIndex) => {
+      const persons = this.state.persons;
+      //delete one element from array
+      persons.splice(personIndex, 1)
+      this.setState({persons: persons})
   }
 
   //target is the input into which we typed
@@ -60,8 +67,9 @@ class App extends Component {
     if (this.state.showPersons) {
         persons = (
           <div>
-            {this.state.persons.map(person => {
+            {this.state.persons.map((person, index) => {
               return (<Person 
+                click={() => this.deletePersonHandler(index)}
                 name={person.name} 
                 age={person.age} />
               )
