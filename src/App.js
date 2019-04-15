@@ -1,25 +1,47 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import ValidationComponent from './ValidationComponent'
+import CharComponent from './CharComponent'
 
 class App extends Component {
+
+  state = {
+    textLength: 0,
+    letters: []
+  }
+
+  inputBoxHandler = (event) => {
+    const text = event.target.value
+    const length = text.length
+    this.setState({
+      textLength: length,
+      letters: text.split('')
+    })
+  }
+
+  deleteCharComponentHandler = (index) => {
+    const lettersCopy = [...this.state.letters]
+    lettersCopy.splice(index, 1)
+    this.setState({
+      letters: lettersCopy
+    })
+  }
+
   render() {
+    const charComponents = (
+      <div>{
+        this.state.letters.map((letter, index) => {
+          return <CharComponent letter={letter} key={index} click={() => this.deleteCharComponentHandler(index)}></CharComponent>
+        })
+      }</div>
+    )
+
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+        <input onChange={this.inputBoxHandler}/>
+        <p>{this.state.textLength}</p>
+        <ValidationComponent textLength={this.state.textLength}></ValidationComponent>
+        <div>{charComponents}</div>
       </div>
     );
   }
