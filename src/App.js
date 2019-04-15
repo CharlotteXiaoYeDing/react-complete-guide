@@ -91,13 +91,22 @@ class App extends Component {
         style.backgroundColor = 'red'
     }
 
+    //"red bold"
+    const classes = []
+    if (this.state.persons.length <= 2) {
+        classes.push('red');
+    }
+    if (this.state.persons.length <= 1) {
+      classes.push('bold');
+    }
+
     //Every component must return some HTML to the DOM
     return (
       //class is a reserved word. Use className instead.
       //bind is prefer to anonymous function
       <div className="App">
         <h1>Hi, I'm a React App</h1>
-        <p>This is really working</p>
+        <p className={classes.join(' ')}>This is really working</p>
         <button 
           onClick={ () => this.togglePersonsHandler() }
           style={style}
