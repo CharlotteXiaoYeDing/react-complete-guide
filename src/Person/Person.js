@@ -1,5 +1,6 @@
 import React from 'react';
 import './Person.css'
+import Radium from 'radium';
 
 //When using class-based components, it's this.props
 const person = (props) => {
@@ -13,4 +14,4 @@ const person = (props) => {
     )
 };
 
-export default person;
+export default Radium(person);

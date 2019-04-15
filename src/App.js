@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import './App.css';
 //Must start with uppercase letter 
+import Radium from 'radium';
 import Person from './Person/Person'
 
 //Defining component: 
@@ -68,7 +69,11 @@ class App extends Component {
       font: 'inherit',
       border: '1px solid blue',
       pading: '8px',
-      cursor: 'pointer'
+      cursor: 'pointer',
+      ':hover': {
+        backgroundColor: 'lightgreen',
+        color: 'black'
+      }
     }
 
     let persons = null;
@@ -89,6 +94,10 @@ class App extends Component {
           </div> 
         );
         style.backgroundColor = 'red'
+        style[':hover'] = {
+          backgroundColor: 'salmon',
+          color: 'black'
+        }
     }
 
     //"red bold"
@@ -122,4 +131,5 @@ class App extends Component {
   }
 }
 
-export default App;
+//Higher order component
+export default Radium(App);
