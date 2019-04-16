@@ -2,7 +2,6 @@
 import React, { Component } from 'react';
 import './App.css';
 //Must start with uppercase letter 
-import Radium, { StyleRoot } from 'radium';
 import Person from './Person/Person'
 
 //Defining component: 
@@ -69,11 +68,7 @@ class App extends Component {
       font: 'inherit',
       border: '1px solid blue',
       pading: '8px',
-      cursor: 'pointer',
-      ':hover': {
-        backgroundColor: 'lightgreen',
-        color: 'black'
-      }
+      cursor: 'pointer'
     }
 
     let persons = null;
@@ -94,10 +89,6 @@ class App extends Component {
           </div> 
         );
         style.backgroundColor = 'red'
-        style[':hover'] = {
-          backgroundColor: 'salmon',
-          color: 'black'
-        }
     }
 
     //"red bold"
@@ -114,7 +105,6 @@ class App extends Component {
       //class is a reserved word. Use className instead.
       //bind is prefer to anonymous function
       //For transforming selector, you need to wrap everything in StyleRoot
-      <StyleRoot>
         <div className="App">
           <h1>Hi, I'm a React App</h1>
           <p className={classes.join(' ')}>This is really working</p>
@@ -124,7 +114,6 @@ class App extends Component {
           >Switch Name</button>
           {persons}
         </div>
-      </StyleRoot>
       //Cannot return another <h1>. We can only have one root element (div)
     );
     // return React.createElement(
@@ -135,4 +124,4 @@ class App extends Component {
 }
 
 //Higher order component
-export default Radium(App);
+export default App;
