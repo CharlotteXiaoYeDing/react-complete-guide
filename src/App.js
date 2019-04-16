@@ -1,6 +1,6 @@
 //React is always required for rendering 
 import React, { Component } from 'react';
-import './App.css';
+import classes from './App.css';
 //Must start with uppercase letter 
 import Person from './Person/Person'
 
@@ -92,12 +92,12 @@ class App extends Component {
     }
 
     //"red bold"
-    const classes = []
+    const assignedClasses = []
     if (this.state.persons.length <= 2) {
-        classes.push('red');
+      assignedClasses.push(classes.red);
     }
     if (this.state.persons.length <= 1) {
-      classes.push('bold');
+      assignedClasses.push(classes.bold);
     }
 
     //Every component must return some HTML to the DOM
@@ -105,9 +105,9 @@ class App extends Component {
       //class is a reserved word. Use className instead.
       //bind is prefer to anonymous function
       //For transforming selector, you need to wrap everything in StyleRoot
-        <div className="App">
+        <div className={classes.App}>
           <h1>Hi, I'm a React App</h1>
-          <p className={classes.join(' ')}>This is really working</p>
+          <p className={assignedClasses.join(' ')}>This is really working</p>
           <button 
             onClick={ () => this.togglePersonsHandler() }
             style={style}
