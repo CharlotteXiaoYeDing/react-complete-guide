@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import './App.css';
 //Must start with uppercase letter 
-import Radium from 'radium';
+import Radium, { StyleRoot } from 'radium';
 import Person from './Person/Person'
 
 //Defining component: 
@@ -113,15 +113,18 @@ class App extends Component {
     return (
       //class is a reserved word. Use className instead.
       //bind is prefer to anonymous function
-      <div className="App">
-        <h1>Hi, I'm a React App</h1>
-        <p className={classes.join(' ')}>This is really working</p>
-        <button 
-          onClick={ () => this.togglePersonsHandler() }
-          style={style}
-        >Switch Name</button>
-        {persons}
-      </div>
+      //For transforming selector, you need to wrap everything in StyleRoot
+      <StyleRoot>
+        <div className="App">
+          <h1>Hi, I'm a React App</h1>
+          <p className={classes.join(' ')}>This is really working</p>
+          <button 
+            onClick={ () => this.togglePersonsHandler() }
+            style={style}
+          >Switch Name</button>
+          {persons}
+        </div>
+      </StyleRoot>
       //Cannot return another <h1>. We can only have one root element (div)
     );
     // return React.createElement(
