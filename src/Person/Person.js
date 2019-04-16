@@ -3,7 +3,10 @@ import classes from './Person.css'
 
 //When using class-based components, it's this.props
 const person = (props) => {
-
+    const rnd = Math.random();
+    if (rnd > 0.7) {
+        throw new Error('something went wrong')
+    }
     //chilren is reserverd word: refering to any elements between the opening and closing tag
     return (
         <div className={classes.Person}>

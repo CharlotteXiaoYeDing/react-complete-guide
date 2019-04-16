@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import classes from './App.css';
 //Must start with uppercase letter 
 import Person from './Person/Person'
+import ErrorBoundary from './ErrorBoundary/ErrorBoundary'
 
 //Defining component: 
 // - define class which extends Component
@@ -72,12 +73,13 @@ class App extends Component {
           <div>
             {this.state.persons.map((person, index) => {
               //key prop help react update lists effectively. It compare virtual DOM and real DOM to figure out the changes. By default, it render the entire lists. With key, it only re render the ones that changed.
-              return (<Person 
-                key={person.id}
-                click={() => this.deletePersonHandler(index)}
-                name={person.name} 
-                age={person.age} 
-                changed={(event) => this.nameChangedHanlder(event, person.id)}/>
+              //higher order component
+              return (<ErrorBoundary key={person.id}><Person 
+                  click={() => this.deletePersonHandler(index)}
+                  name={person.name} 
+                  age={person.age} 
+                  changed={(event) => this.nameChangedHanlder(event, person.id)}/>
+                </ErrorBoundary>
               )
             })}
           </div> 
